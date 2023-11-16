@@ -10,6 +10,6 @@
 
 // Application uses the OpenWeather API to retrieve weather data.
 
-var APICall = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=b0caa407617cefda85f58c10fb27507e"
+var APICall = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}"
 
 //Application uses localStorage to store persistent data.
