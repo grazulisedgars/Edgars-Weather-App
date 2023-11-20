@@ -18,6 +18,7 @@ var APIKey = "c4899c41a207a3b65b7a9158b5b9858a"
 $("#search-button").on("click", function(event) {
     event.preventDefault();
     $("#today").empty();
+    
 
     var city = $("#search-input").val().trim();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
@@ -68,6 +69,8 @@ $("#search-button").on("click", function(event) {
 //This function below is getting forecast data
 $("#search-button"). on("click", function (event) {
     event.preventDefault();
+    $("#forecast-container").empty();
+
     var city = $("#search-input").val().trim();
     var geocodingURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
@@ -88,18 +91,26 @@ $("#search-button"). on("click", function (event) {
     })
     .then(function (forecastData) {
         console.log(forecastData);
-
         // Date
         var forecastDay = forecastData.list[0].dt_txt.split(' ')[0];
-        var forecastDay = $("<p>").text(forecastDay)
+        var dayElement = $("<p>").text(forecastDay);
         // Icon
+        var forecastIcon = forecastData.list[0].weather[0].icon;
+        var forecastIconURL = "https://openweathermap.org/img/wn/" + forecastIcon + ".png";
+        var forecastWeatherIcon = $("<img>").attr("src", forecastIconURL).attr("alt", "Weather Icon").css( {
+            'vertical-align': 'middle',
+            'margin-right': '5px', 
+            'width': '30px',
+            'height': '30px'  
+        })  
         // Temp
         // Wind
         //Humidity
 
-        $("#forecast").append(forecastDay)
-    })
-})
+        $("#forecast-container").append(dayElement).append(forecastWeatherIcon)
+    });
+});
+
 
 
 //Application uses localStorage to store persistent data.
