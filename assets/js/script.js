@@ -10,10 +10,11 @@
 
 // Application uses the OpenWeather API to retrieve weather data.
 
-var APIKey = " "
+var APIKey = "c4899c41a207a3b65b7a9158b5b9858a"
 
-//Next step I should show current weather data on the HTML which has #today
+//Next step I should show #today data properly and style it
 
+// This function below is getting current weather data
 $("#search-button").on("click", function(event) {
     event.preventDefault();
     $("#today").empty();
@@ -63,10 +64,8 @@ $("#search-button").on("click", function(event) {
     
 });
 
-// Fix forecast data. Get the key working 
 // Get forecast data showing on the website
-
-// Could wrap this in function and then add this function to the above click event
+//This function below is getting forecast data
 $("#search-button"). on("click", function (event) {
     event.preventDefault();
     var city = $("#search-input").val().trim();
@@ -90,12 +89,17 @@ $("#search-button"). on("click", function (event) {
     .then(function (forecastData) {
         console.log(forecastData);
 
-        // This one has a different link to json so destination for information might differ.
-        // Check how to get icons for weather
+        // Date
+        var forecastDay = forecastData.list[0].dt_txt.split(' ')[0];
+        var forecastDay = $("<p>").text(forecastDay)
+        // Icon
+        // Temp
+        // Wind
+        //Humidity
+
+        $("#forecast").append(forecastDay)
     })
 })
-
-
 
 
 //Application uses localStorage to store persistent data.
