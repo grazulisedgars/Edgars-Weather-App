@@ -97,17 +97,19 @@ $("#search-button"). on("click", function (event) {
         // Icon
         var forecastIcon = forecastData.list[0].weather[0].icon;
         var forecastIconURL = "https://openweathermap.org/img/wn/" + forecastIcon + ".png";
-        var forecastWeatherIcon = $("<img>").attr("src", forecastIconURL).attr("alt", "Weather Icon").css( {
-            'vertical-align': 'middle',
-            'margin-right': '5px', 
-            'width': '30px',
-            'height': '30px'  
-        })  
-        // Temp
-        // Wind
-        //Humidity
+        var forecastWeatherIcon = $("<img>").attr("src", forecastIconURL).attr("alt", "Weather Icon");
 
-        $("#forecast-container").append(dayElement).append(forecastWeatherIcon)
+        // Temp
+         var forecastCelsiusTemp = forecastData.list[0].main.temp - 273.15;
+         var forecastTempEl = $("<p>").text("Temp: " + forecastCelsiusTemp.toFixed(2) + " °C");
+        // Wind
+        var forecastWindSpeed = forecastData.list[0].wind.speed;
+        var forecastWindEl = $("<p>").text("Wind: " + forecastWindSpeed + " KPH");
+        //Humidity
+        var forecastHumidity = forecastData.list[0].main.humidity;
+        var forecastHumidityEl = $("<p>").text("Humidity: " + forecastHumidity + "%");
+
+        $("#forecast-container").append(dayElement).append(forecastWeatherIcon).append(forecastTempEl).append(forecastWindEl).append(forecastHumidityEl)
     });
 });
 
