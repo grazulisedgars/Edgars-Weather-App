@@ -8,4 +8,37 @@ h1 {
     text-align: center;
     margin: auto;
     padding: 1%;
-}
+};
+
+/* Need to add blue color to the button */
+/* Or check via Bootstrap Documentation about styling options */
+/* Search and history buttons should be separated by line */
+#search-button {
+
+};
+
+/* Need to add grey colour and additional styling to buttons */
+/* Check Bootstrap Documentation for it */
+#history {
+
+};
+
+/* Add styles to today section  */
+/* Border around the section */
+/* City, Date and Icon Bold, Font-size larger than the rest */
+/* Text to the left-side  */
+/* Spacing in-between rows  */
+#today {
+
+};
+
+/* Add styles to forecast section  */
+/* Date */
+/* Weather Icon */
+/* Weather Data */
+/* Font-color: white */
+/* 5 boxes with dark bluish grey color */
+#forecast {
+
+
+};
