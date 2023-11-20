@@ -10,12 +10,14 @@
 
 // Application uses the OpenWeather API to retrieve weather data.
 
-var APIKey = ""
+var APIKey = " "
 
 //Next step I should show current weather data on the HTML which has #today
 
 $("#search-button").on("click", function(event) {
     event.preventDefault();
+    $("#today").empty();
+
     var city = $("#search-input").val().trim();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     
@@ -27,9 +29,20 @@ $("#search-button").on("click", function(event) {
         console.log(data);
         // Need to display current day (h2 - font). Check for appropriate format
         var day = dayjs().format(" (DD/MM/YYYY)");
+        
+        // Weather icon data 
+        var weatherIcon = data.weather[0].icon;
+        var iconURL = "https://openweathermap.org/img/wn/" + weatherIcon + ".png";
+        var weatherIcon = $("<img>").attr("src", iconURL).attr("alt", "Weather Icon").css( {
+            'vertical-align': 'middle',
+            'margin-right': '5px', 
+            'width': '30px',
+            'height': '30px'  
+        });
+        
         // Need to display city (h2) also dispalys data 
         var city = $("<h2>").text(data.name + " " + day);
-        // Weather icon data 
+        city.append(weatherIcon);
 
         // Display Temp (p)
         var celsiusTemp = data.main.temp - 273.15;

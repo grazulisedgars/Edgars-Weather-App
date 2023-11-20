@@ -1,6 +1,6 @@
-body {
+/* body {
     /* font-family:  Arial, Helvetica, sans-serif   */
-}
+/* } */
 
 h1 {
     color: white;
@@ -13,24 +13,24 @@ h1 {
 /* Need to add blue color to the button */
 /* Or check via Bootstrap Documentation about styling options */
 /* Search and history buttons should be separated by line */
-#search-button {
+/* #search-button {
 
-};
+}; */
 
 /* Need to add grey colour and additional styling to buttons */
 /* Check Bootstrap Documentation for it */
-#history {
+/* #history {
 
-};
+}; */
 
 /* Add styles to today section  */
 /* Border around the section */
 /* City, Date and Icon Bold, Font-size larger than the rest */
 /* Text to the left-side  */
 /* Spacing in-between rows  */
-#today {
+/* #today {
 
-};
+}; */
 
 /* Add styles to forecast section  */
 /* Date */
@@ -38,7 +38,7 @@ h1 {
 /* Weather Data */
 /* Font-color: white */
 /* 5 boxes with dark bluish grey color */
-#forecast {
+/* #forecast {
 
 
-};
+}; */
