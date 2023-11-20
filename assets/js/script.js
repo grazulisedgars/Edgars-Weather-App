@@ -91,26 +91,30 @@ $("#search-button"). on("click", function (event) {
     })
     .then(function (forecastData) {
         console.log(forecastData);
-        // Date
-        var forecastDay = forecastData.list[0].dt_txt.split(' ')[0];
-        var dayElement = $("<p>").text(forecastDay);
-        // Icon
-        var forecastIcon = forecastData.list[0].weather[0].icon;
-        var forecastIconURL = "https://openweathermap.org/img/wn/" + forecastIcon + ".png";
-        var forecastWeatherIcon = $("<img>").attr("src", forecastIconURL).attr("alt", "Weather Icon");
 
-        // Temp
-         var forecastCelsiusTemp = forecastData.list[0].main.temp - 273.15;
-         var forecastTempEl = $("<p>").text("Temp: " + forecastCelsiusTemp.toFixed(2) + " °C");
-        // Wind
-        var forecastWindSpeed = forecastData.list[0].wind.speed;
-        var forecastWindEl = $("<p>").text("Wind: " + forecastWindSpeed + " KPH");
-        //Humidity
-        var forecastHumidity = forecastData.list[0].main.humidity;
-        var forecastHumidityEl = $("<p>").text("Humidity: " + forecastHumidity + "%");
-
-        $("#forecast-container").append(dayElement).append(forecastWeatherIcon).append(forecastTempEl).append(forecastWindEl).append(forecastHumidityEl)
-    });
+        //Loop through forecast data (every 8 data points for a new day)
+        for (var i =0; i < forecastData.list.length; i+=8) {
+            // Date
+            var forecastDay = forecastData.list[i].dt_txt.split(' ')[0];
+            var dayElement = $("<p>").text(forecastDay);
+            // Icon
+            var forecastIcon = forecastData.list[i].weather[0].icon;
+            var forecastIconURL = "https://openweathermap.org/img/wn/" + forecastIcon + ".png";
+            var forecastWeatherIcon = $("<img>").attr("src", forecastIconURL).attr("alt", "Weather Icon");
+            
+            // Temp
+            var forecastCelsiusTemp = forecastData.list[i].main.temp - 273.15;
+            var forecastTempEl = $("<p>").text("Temp: " + forecastCelsiusTemp.toFixed(2) + " °C");
+            // Wind
+            var forecastWindSpeed = forecastData.list[i].wind.speed;
+            var forecastWindEl = $("<p>").text("Wind: " + forecastWindSpeed + " KPH");
+            //Humidity
+            var forecastHumidity = forecastData.list[i].main.humidity;
+            var forecastHumidityEl = $("<p>").text("Humidity: " + forecastHumidity + "%");
+            
+            $("#forecast-container").append(dayElement).append(forecastWeatherIcon).append(forecastTempEl).append(forecastWindEl).append(forecastHumidityEl)
+        }
+        });
 });
 
 
