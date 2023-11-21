@@ -23,6 +23,10 @@ $("#search-button").on("click", function(event) {
     $("#today").addClass("with-border");
 
     var city = $("#search-input").val().trim();
+
+    // Save the city to local storage (ASK BCs Learning Assistant helped me with placement of this function call).
+    saveToLocalStorage(city);
+
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     
     fetch(queryURL)
@@ -31,9 +35,6 @@ $("#search-button").on("click", function(event) {
     })
     .then(function (data) {
         console.log(data);
-
-        // Save the city to local storage
-        saveToLocalStorage(city);
 
         // Day data
         var day = dayjs().format(" (DD/MM/YYYY)");
