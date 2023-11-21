@@ -31,7 +31,11 @@ $("#search-button").on("click", function(event) {
     })
     .then(function (data) {
         console.log(data);
-        // Need to display current day (h2 - font). Check for appropriate format
+
+        // Save the city to local storage
+        saveToLocalStorage(city);
+
+        // Day data
         var day = dayjs().format(" (DD/MM/YYYY)");
         
         // Weather icon data 
@@ -66,6 +70,16 @@ $("#search-button").on("click", function(event) {
     });
     
 });
+
+function saveToLocalStorage (city) {
+    var searches = JSON.parse(localStorage.getItem("weatherSearches")) || [];
+
+    if(!searches.includes(city)) {
+        searches.push(city);
+
+        localStorage.setItem("weatherSearches", JSON.stringify(searches));
+    }
+};
 
 //This function below is getting forecast data
 $("#search-button"). on("click", function (event) {

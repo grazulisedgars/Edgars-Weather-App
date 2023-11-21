@@ -10,6 +10,17 @@ h1 {
     padding: 1%;
 }
 
+/* Search bar and search history buttons */
+aside {
+    float: left;
+    width: 30%;
+  }
+  
+  /* Today's and forecast data */
+  section {
+    float: right;
+    width: 70%;
+  }
 /* Need to add blue color to the button */
 /* Or check via Bootstrap Documentation about styling options */
 /* Search and history buttons should be separated by line */
