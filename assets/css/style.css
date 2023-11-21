@@ -8,7 +8,7 @@ h1 {
     text-align: center;
     margin: auto;
     padding: 1%;
-};
+}
 
 /* Need to add blue color to the button */
 /* Or check via Bootstrap Documentation about styling options */
@@ -38,7 +38,16 @@ h1 {
 /* Weather Data */
 /* Font-color: white */
 /* 5 boxes with dark bluish grey color */
-/* #forecast {
+#forecast-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 
-
-}; */
+.forecast-box {
+    background-color: rgb(26, 64, 115);
+    color:white;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+  }
