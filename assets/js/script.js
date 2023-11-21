@@ -1,18 +1,4 @@
-//When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history
-
-//When a user views the current weather conditions for a city they are presented with the city's name, the date, an icon representation of the weather conditions, the temperature, the humidity, and the wind speed
-
-//When a user views the current weather conditions for a city they are presented with the city's name, the date, an icon representation of the weather conditions, the temperature, the humidity, and the wind speed
-
-
-//When a user click on a city in the search history they are again presented with current and future conditions for that city
-
-
-// Application uses the OpenWeather API to retrieve weather data.
-
 var APIKey = "c4899c41a207a3b65b7a9158b5b9858a"
-
-//Next step I should show #today data properly and style it
 
 // This function below is getting current weather data
 $("#search-button").on("click", function(event) {
@@ -72,38 +58,16 @@ $("#search-button").on("click", function(event) {
     
 });
 
-function saveToLocalStorage (city) {
-    var searches = JSON.parse(localStorage.getItem("weatherSearches")) || [];
-
-    if(!searches.includes(city)) {
-        searches.push(city);
-
-        localStorage.setItem("weatherSearches", JSON.stringify(searches));
-
-        createCityButton(city);
-    }
-};
-
-function createCityButton(city) {
-
-    var button = $("<button>")
-    .addClass("btn btn-secondary btn-sm mb-1 search-history-button")
-    .text(city);
-
-     // Append the button to the history div
-     $("#history").append(button);
-
-};
 
 //This function below is getting forecast data
 $("#search-button"). on("click", function (event) {
     event.preventDefault();
     $("#forecast-container").empty();
     $("#forecast-heading").empty();
-
+    
     var city = $("#search-input").val().trim();
     var geocodingURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-
+    
     fetch(geocodingURL)
     .then(function (response) {
         return response.json();
@@ -111,9 +75,9 @@ $("#search-button"). on("click", function (event) {
     .then(function (geocodoingData) {
         var lat = geocodoingData.coord.lat;
         var lon = geocodoingData.coord.lon;
-
+        
         var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
-
+        
         return fetch(forecastURL);
     })
     .then(function(forecastResponse){
@@ -121,9 +85,9 @@ $("#search-button"). on("click", function (event) {
     })
     .then(function (forecastData) {
         console.log(forecastData);
-
+        
         var forecastHeading = $("<h3>").text("5-Day Forecast: ");
-
+        
         //Loop through forecast data (every 8 data points for a new day)
         for (var i =0; i < forecastData.list.length; i+=8) {
             // Date
@@ -146,10 +110,40 @@ $("#search-button"). on("click", function (event) {
             var forecastHumidityEl = $("<p>").text("Humidity: " + forecastHumidity + "%");
             
             var forecastBox =$("<div>").addClass("forecast-box");
-           forecastBox.append(dayElement).append(forecastWeatherIcon).append(forecastTempEl).append(forecastWindEl).append(forecastHumidityEl);
-           $("#forecast-heading").prepend(forecastHeading);
-           $("#forecast-container").append(forecastBox)
+            forecastBox.append(dayElement).append(forecastWeatherIcon).append(forecastTempEl).append(forecastWindEl).append(forecastHumidityEl);
+            $("#forecast-heading").prepend(forecastHeading);
+            $("#forecast-container").append(forecastBox)
         }
-        });
+    });
 });
 
+
+// Function that stores to Local Storage 
+
+function saveToLocalStorage (city) {
+    var searches = JSON.parse(localStorage.getItem("weatherSearches")) || [];
+
+    if(!searches.includes(city)) {
+        searches.push(city);
+
+        localStorage.setItem("weatherSearches", JSON.stringify(searches));
+
+        createCityButton(city);
+    }
+};
+
+// Function that creates history buttons
+function createCityButton(city) {
+
+    var button = $("<button>")
+    .addClass("btn btn-secondary btn-sm mb-1 search-history-button")
+    .text(city);
+
+    button.on("click", function (){
+        console.log(city)
+    })
+
+     // Append the button to the history div
+     $("#history").append(button);
+
+};
