@@ -1,18 +1,7 @@
 var APIKey = "c4899c41a207a3b65b7a9158b5b9858a"
 
-// This function below is getting current weather data
-$("#search-button").on("click", function(event) {
-    event.preventDefault();
-    $("#today").empty();
-
-    // Add the 'with-border' class to #today
-    $("#today").addClass("with-border");
-
-    var city = $("#search-input").val().trim();
-
-    // Save the city to local storage (ASK BCs Learning Assistant helped me with placement of this function call).
-    saveToLocalStorage(city);
-
+// Function for current weather data 
+function fetchWeatherData(city) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     
     fetch(queryURL)
@@ -31,8 +20,8 @@ $("#search-button").on("click", function(event) {
         var weatherIcon = $("<img>").attr("src", iconURL).attr("alt", "Weather Icon").css( {
             'vertical-align': 'middle',
             'margin-right': '5px', 
-            'width': '30px',
-            'height': '30px'  
+            'width': '40px',
+            'height': '40px'  
         });
         
         // Need to display city (h2) also dispalys data 
@@ -55,17 +44,10 @@ $("#search-button").on("click", function(event) {
         // Append to today section
         $("#today").append(city).append(celsiusTemp).append(windSpeed).append(humidity);
     });
-    
-});
+}
 
-
-//This function below is getting forecast data
-$("#search-button"). on("click", function (event) {
-    event.preventDefault();
-    $("#forecast-container").empty();
-    $("#forecast-heading").empty();
-    
-    var city = $("#search-input").val().trim();
+// Function for forecast data
+function fetchForecastData (city) {
     var geocodingURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     
     fetch(geocodingURL)
@@ -115,6 +97,26 @@ $("#search-button"). on("click", function (event) {
             $("#forecast-container").append(forecastBox)
         }
     });
+}
+
+// This is an event listener for search button 
+$("#search-button").on("click", function(event) {
+    event.preventDefault();
+    $("#today").empty();
+    $("#forecast-container").empty();
+    $("#forecast-heading").empty();
+
+    // Add the 'with-border' class to #today
+    $("#today").addClass("with-border");
+
+    var city = $("#search-input").val().trim();
+
+    // Save the city to local storage (ASK BCs Learning Assistant helped me with placement of this function call).
+    saveToLocalStorage(city);
+
+     // Call the fetchWeatherData function
+     fetchWeatherData(city);
+     fetchForecastData(city);
 });
 
 
@@ -140,7 +142,11 @@ function createCityButton(city) {
     .text(city);
 
     button.on("click", function (){
-        console.log(city)
+        $("#today").empty();
+        $("#forecast-container").empty();
+        $("#forecast-heading").empty();
+        fetchWeatherData(city);
+        fetchForecastData(city);
     })
 
      // Append the button to the history div
