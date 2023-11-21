@@ -70,15 +70,20 @@ aside {
   .search-history-button:hover {
     background-color: #eee;
   }
-  
-  /* Search history button:active */
-  .search-history-button:active {
-    background-color: #ccc;
+
+  /* Search history button:active and :focus */
+  .search-history-button:active,
+  .search-history-button:focus {
+    background-color: #eee;
   }
 
+  /* Style for the selected state */
+.search-history-button.selected {
+    background-color: rgb(66, 152, 232);
+    color: white;
+}
 
 /* Today's style  */
-
 #today {
     border: none;
   }

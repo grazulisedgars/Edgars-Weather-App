@@ -1,4 +1,18 @@
+// API visible for the purpose of this assignment (API Key is free)
 var APIKey = "c4899c41a207a3b65b7a9158b5b9858a"
+
+// Upon refreshing the page makes sure that generated content doesn't disappear
+$(document).ready(function () {
+    loadStoredCities();
+});
+
+function loadStoredCities() {
+    var searches = JSON.parse(localStorage.getItem("weatherSearches")) || [];
+
+    searches.forEach(function (city) {
+        createCityButton(city);
+    });
+}
 
 // Function for current weather data 
 function fetchWeatherData(city) {
@@ -24,7 +38,7 @@ function fetchWeatherData(city) {
             'height': '40px'  
         });
         
-        // Need to display city (h2) also dispalys data 
+        // Display city 
         var city = $("<h2>").text(data.name + " " + day);
         city.append(weatherIcon);
 
@@ -37,7 +51,6 @@ function fetchWeatherData(city) {
         var windSpeed = $("<p>").text("Wind: " + windSpeed + " KPH");
 
         // Display humidity (p)
-
         var humidity = data.main.humidity;
         var humidity = $("<p>").text("Humidity: " + humidity + "%");
 
@@ -147,6 +160,10 @@ function createCityButton(city) {
         $("#forecast-heading").empty();
         fetchWeatherData(city);
         fetchForecastData(city);
+
+        $(".search-history-button").removeClass("selected");
+        button.addClass("selected");
+        $("#today").addClass("with-border");
     })
 
      // Append the button to the history div
