@@ -23,25 +23,22 @@ h1 {
 
 }; */
 
-/* Add styles to today section  */
-/* Border around the section */
-/* City, Date and Icon Bold, Font-size larger than the rest */
-/* Text to the left-side  */
-/* Spacing in-between rows  */
-/* #today {
+/* Today's style  */
 
-}; */
+#today {
+    border: none;
+  }
+  
+  #today.with-border {
+    border: 2px solid black; 
+    padding-left: 2%;
+  }
 
-/* Add styles to forecast section  */
-/* Date */
-/* Weather Icon */
-/* Weather Data */
-/* Font-color: white */
-/* 5 boxes with dark bluish grey color */
+/* Forecast style  */
 #forecast-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content:space-between;
   }
 
 .forecast-box {

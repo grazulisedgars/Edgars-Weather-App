@@ -18,7 +18,9 @@ var APIKey = "c4899c41a207a3b65b7a9158b5b9858a"
 $("#search-button").on("click", function(event) {
     event.preventDefault();
     $("#today").empty();
-    
+
+    // Add the 'with-border' class to #today
+    $("#today").addClass("with-border");
 
     var city = $("#search-input").val().trim();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
@@ -65,7 +67,6 @@ $("#search-button").on("click", function(event) {
     
 });
 
-// Get forecast data showing on the website
 //This function below is getting forecast data
 $("#search-button"). on("click", function (event) {
     event.preventDefault();
