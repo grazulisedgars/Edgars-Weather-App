@@ -10,33 +10,69 @@ h1 {
     padding: 1%;
 }
 
+aside h2 {
+    padding-left: 2%;
+}
 /* Search bar and search history buttons */
 aside {
     float: left;
-    width: 30%;
+    width: 20%;
   }
   
   /* Today's and forecast data */
   section {
     float: right;
-    width: 70%;
+    width: 75%;
   }
 
-  .custom-class {
-    border: 1px solid black;
+  #history {
+    display: flex;
+    flex-direction: column;
   }
-/* Need to add blue color to the button */
-/* Or check via Bootstrap Documentation about styling options */
-/* Search and history buttons should be separated by line */
-/* #search-button {
+  
+#search-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    
+}
 
-}; */
+  .search-button {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color:rgb(66, 152, 232);
+    color: white;
+    padding: 7px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding-left: 40%;
+    padding-right: 40%;
+    margin-top: 5%;
+  }
 
-/* Need to add grey colour and additional styling to buttons */
-/* Check Bootstrap Documentation for it */
-/* #history {
+ /* Search history button */
+.search-history-button {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 7px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding-left: 40%;
+    padding-right: 40%;
+  }
+  
+  /* Search history button:hover */
+  .search-history-button:hover {
+    background-color: #eee;
+  }
+  
+  /* Search history button:active */
+  .search-history-button:active {
+    background-color: #ccc;
+  }
 
-}; */
 
 /* Today's style  */
 
@@ -47,6 +83,7 @@ aside {
   #today.with-border {
     border: 2px solid black; 
     padding-left: 2%;
+    margin-top: 2%;
   }
 
 /* Forecast style  */

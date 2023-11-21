@@ -28,7 +28,7 @@
         <form id="search-form" class="form">
           <div class="form-inline form-group">
             <div class="input-group">
-              <input class="form-input weather-search" type="text" id="search-input" placeholder="London"
+              <input class="form-input weather-search" type="text" id="search-input" placeholder="Enter city"
                 aria-labelledby="form-heading" aria-controls="today forecast" />
               <div class="input-group-append">
 
@@ -55,9 +55,8 @@
         <!-- Forecast weather data  -->
         <!-- Need to include h3 heading: 5-day forecast: -->
         <section id="forecast" class="row mt-3" role="region" aria-live="polite">
-          <h3 id="forecast-heading" class="mt-1 h3 form-label">
-            5-Day Forecast:
-          </h3>
+
+           <div id="forecast-heading"></div>
            <div id="forecast-container" class="d-flex flex-wrap">
         <!-- Forecast data will be appended here -->
     </div>

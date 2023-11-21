@@ -87,7 +87,7 @@ function saveToLocalStorage (city) {
 function createCityButton(city) {
 
     var button = $("<button>")
-    .addClass("custom-class")
+    .addClass("btn btn-secondary btn-sm mb-1 search-history-button")
     .text(city);
 
      // Append the button to the history div
@@ -99,6 +99,7 @@ function createCityButton(city) {
 $("#search-button"). on("click", function (event) {
     event.preventDefault();
     $("#forecast-container").empty();
+    $("#forecast-heading").empty();
 
     var city = $("#search-input").val().trim();
     var geocodingURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
@@ -120,6 +121,8 @@ $("#search-button"). on("click", function (event) {
     })
     .then(function (forecastData) {
         console.log(forecastData);
+
+        var forecastHeading = $("<h3>").text("5-Day Forecast: ");
 
         //Loop through forecast data (every 8 data points for a new day)
         for (var i =0; i < forecastData.list.length; i+=8) {
@@ -144,19 +147,9 @@ $("#search-button"). on("click", function (event) {
             
             var forecastBox =$("<div>").addClass("forecast-box");
            forecastBox.append(dayElement).append(forecastWeatherIcon).append(forecastTempEl).append(forecastWindEl).append(forecastHumidityEl);
-           $("#forecast-container").append(forecastBox);
+           $("#forecast-heading").prepend(forecastHeading);
+           $("#forecast-container").append(forecastBox)
         }
         });
 });
 
-
-
-//Application uses localStorage to store persistent data.
-
-// The search history of cities should show bellow search bar 
-
-
-$("#history").on("click", "#search-button" ) // create a function and add the function inside parathesis 
-// Might need a function where is target or current.target clicked shows the data
-
-// Once clicked on the search history cities the weather data should be retrieved.
