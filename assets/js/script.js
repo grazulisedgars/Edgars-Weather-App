@@ -79,7 +79,20 @@ function saveToLocalStorage (city) {
         searches.push(city);
 
         localStorage.setItem("weatherSearches", JSON.stringify(searches));
+
+        createCityButton(city);
     }
+};
+
+function createCityButton(city) {
+
+    var button = $("<button>")
+    .addClass("custom-class")
+    .text(city);
+
+     // Append the button to the history div
+     $("#history").append(button);
+
 };
 
 //This function below is getting forecast data

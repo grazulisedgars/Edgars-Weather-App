@@ -21,6 +21,10 @@ aside {
     float: right;
     width: 70%;
   }
+
+  .custom-class {
+    border: 1px solid black;
+  }
 /* Need to add blue color to the button */
 /* Or check via Bootstrap Documentation about styling options */
 /* Search and history buttons should be separated by line */
